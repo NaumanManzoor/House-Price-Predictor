@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>House Price Predictor</title>
+  <link href="https://fonts.googleapis.com/css?family=Pacifico|Arimo|Hind:300|Open+Sans+Condensed:300" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      background: url("{{ url_for('static', filename='house.jpg') }}") no-repeat center center fixed;
+      background-size: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏠 House Price Predictor</h1>
+    <form action="{{ url_for('predict') }}" method="post">
+      <input name="longitude" placeholder="Longitude" required>
+      <input name="latitude" placeholder="Latitude" required>
+      <input name="housing_median_age" placeholder="Housing Median Age" required>
+      <input name="total_rooms" placeholder="Total Rooms" required>
+      <input name="total_bedrooms" placeholder="Total Bedrooms" required>
+      <input name="population" placeholder="Population" required>
+      <input name="households" placeholder="Households" required>
+      <input name="median_income" placeholder="Median Income" required>
+      <select name="ocean_proximity" required>
+        <option value="" disabled selected>Select Ocean Proximity</option>
+        <option value="NEAR BAY">NEAR BAY</option>
+        <option value="INLAND">INLAND</option>
+        <option value="NEAR OCEAN">NEAR OCEAN</option>
+        <option value="ISLAND">ISLAND</option>
+        <option value="<1H OCEAN"><1H OCEAN</option>
+      </select>
+      <button type="submit">PREDICT</button>
+    </form>
+    <h2>{{ prediction_text }}</h2>
+  </div>
+</body>
+</html>
